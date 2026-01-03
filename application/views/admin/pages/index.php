@@ -18,6 +18,7 @@
             <td><?= $p->slug ?></td>
             <td><?= $p->status ?></td>
             <td>
+                <a href="<?= site_url('site/page/'.$p->slug) ?>">View</a> |
                 <a href="<?= site_url('admin/pages/edit/'.$p->id) ?>">Edit</a> |
                 <a href="<?= site_url('admin/pages/delete/'.$p->id) ?>" onclick="return confirm('Delete this page?')">Delete</a>
             </td>

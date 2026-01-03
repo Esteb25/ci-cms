@@ -11,14 +11,14 @@ class Site extends CI_Controller {
 
     public function page($slug){
         $page = $this->page->getBySlug($slug);
-        if(!$page) show_404();
+
+        if(!$page || $page->status != 'published'){
+            show_404(); // Drafts are not visible
+        }
 
         // Inject affiliate links
         $page->content = $this->aff->injectLinks($page->content);
 
-        // Optional: cache page 1 hour
-        $this->output->cache(60);
-
-        $this->load->view('site/page',['page'=>$page]);
+        $this->load->view('site/page', ['page'=>$page]);
     }
 }
